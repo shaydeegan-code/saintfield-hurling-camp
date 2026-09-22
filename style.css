@@ -264,6 +264,16 @@ section{padding:82px 0}
 .week .txt strong{display:block;font-size:1rem}
 .week .txt span{font-size:.9rem;color:var(--muted)}
 
+/* session dates */
+.dates{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 40px}
+.date{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-width:76px;padding:13px 15px;border-radius:14px;
+  background:var(--bg-2);border:1.5px solid var(--line);
+}
+.date .d{font-family:var(--display);font-size:1.55rem;line-height:1;color:var(--red)}
+.date .m{font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
 /* partners */
 .logos{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
 .logo{
