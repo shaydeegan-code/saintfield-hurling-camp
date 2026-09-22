@@ -35,3 +35,9 @@ Currently wired to:
 
 - Register interest: <https://forms.gle/4MpDeyzXFMpf7mfs6>
 - Coach availability: <https://forms.gle/Nbn2UG8MYKjbVfKa6>
+
+## After editing style.css
+
+Bump the `?v=` number on the stylesheet link in both HTML files, e.g.
+`style.css?v=2` becomes `style.css?v=3`. Without that, anyone who has
+already visited keeps seeing the old stylesheet from their browser cache.
