@@ -42,7 +42,10 @@
   /* this page is dark end-to-end */
   body{background:var(--ink)}
   .coach-wrap{max-width:820px;margin:0 auto;padding:0 24px}
-  .coach-head{padding:64px 0 40px}
+  /* padding-block, not a padding shorthand — a shorthand here would zero out
+     the 24px side gutter that .coach-wrap provides, and the text would run
+     edge-to-edge on a phone. */
+  .coach-head{padding-block:64px 40px}
   .coach-head h1{font-size:clamp(2.4rem,7vw,4.2rem);color:#fff}
   .coach-head .eyebrow{color:var(--red-soft)}
   .coach-head p{color:rgba(247,241,236,.78);font-size:1.1rem;max-width:58ch}
