@@ -30,3 +30,8 @@ var CONFIG = {
 
 While those are left empty the pages use a built-in form that opens a
 pre-filled email instead, so they work either way.
+
+Currently wired to:
+
+- Register interest: <https://forms.gle/4MpDeyzXFMpf7mfs6>
+- Coach availability: <https://forms.gle/Nbn2UG8MYKjbVfKa6>
