@@ -137,6 +137,30 @@
   }
   .print-btn{margin:0 0 40px}
 
+  /* ---------- online submission ---------- */
+  /* the wet-signature block is for the printed form only */
+  .sign{display:none}
+  #online-wrap{
+    border:2px solid var(--ink);border-radius:16px;padding:26px 28px;margin:0 0 40px;
+    background:var(--bg-2);
+  }
+  #online-wrap h3{font-size:1.1rem;margin-bottom:8px}
+  #online-wrap > p{font-size:.94rem;color:var(--ink-2)}
+  #submit-status{
+    font-size:.94rem;margin:18px 0 0;min-height:1.3em;color:var(--red);font-weight:600;
+  }
+  #submit-status.ok{color:var(--grass)}
+  .submit-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;align-items:center}
+  .or-print{font-size:.88rem;color:var(--muted);margin:18px 0 0}
+  .gform-cta{
+    border:2px solid var(--red);border-radius:16px;padding:26px 28px;margin:0 0 40px;
+    background:var(--bg-2);
+  }
+  .gform-cta h3{font-size:1.15rem;margin-bottom:10px}
+  .gform-cta p{font-size:.96rem;color:var(--ink-2)}
+  .err{border-bottom-color:var(--red) !important;border-color:var(--red) !important}
+  .consent.err{background:#FFF3CD}
+
   /* ---------- print: a clean, signable A4 form ---------- */
   @media print{
     @page{size:A4;margin:14mm 13mm}
@@ -171,6 +195,9 @@
     .sign-line{height:26px;border-bottom-color:#000}
     .privacy{font-size:7.6pt}
     .privacy h3{font-size:8.2pt;margin:8px 0 3px}
+    /* printed copy: wet signature in, online submission out */
+    .sign{display:block !important}
+    #online-wrap, .gform-cta{display:none !important}
     /* keep the signature and privacy notice together on the last sheet */
     .page-break{break-before:page}
     a{color:#000;text-decoration:none}
@@ -396,17 +423,82 @@
     <div class="callout" style="margin-top:26px">
       <strong>Designated Children's Officer for this programme</strong>
       <p>
-        <span class="todo">FILL IN: name</span>
-        &nbsp;<span class="todo">FILL IN: phone</span>
-        &nbsp;<span class="todo">FILL IN: email</span><br><br>
-        If you have any concern about your child's welfare or about the conduct of anyone
-        involved in the camp, you can raise it with the Children's Officer directly, or with
-        the Ulster GAA Safeguarding team.
+        <b>Shay Deegan</b> &nbsp;&middot;&nbsp;
+        <a href="tel:+447860532193">07860 532193</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:shay.deegan@gmail.com">shay.deegan@gmail.com</a><br><br>
+        If you have any concern about your child's welfare, or about the conduct of anyone
+        involved in the camp, please raise it with the Children's Officer.
+      </p>
+      <p style="margin-top:14px">
+        Shay is also the lead organiser of the camp. So if your concern is about him, about
+        another organiser, or about anything you would rather not raise with us directly, you
+        should go outside the programme &mdash; to the <b>Ulster GAA Safeguarding team</b>, to
+        your <b>Health and Social Care Trust Gateway Team</b>, or to the <b>PSNI</b>. You do
+        not need our permission and you do not have to tell us first.
       </p>
     </div>
   </section>
 
-  <!-- ===================== signature ===================== -->
+  <!-- ============ online submission (screen only) ============ -->
+
+  <!-- shown instead of everything below, once a Google Form link is configured -->
+  <div class="gform-cta" id="gform-cta" hidden>
+    <h3>Complete this form online</h3>
+    <p>
+      The online version asks for exactly the same information as this page and takes about
+      five minutes. It opens in a new tab.
+    </p>
+    <div class="submit-actions">
+      <a class="btn" id="gform-link" href="#" target="_blank" rel="noopener">
+        Open the consent form
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="btn btn-ghost" type="button" class="btn btn-ghost print-trigger">Print it instead</button>
+    </div>
+  </div>
+
+  <div id="online-wrap">
+    <h3>Submit this form</h3>
+    <p>
+      Fill in the sections above, then confirm below. A signature is not needed if you are
+      submitting online &mdash; your name, the consents you have ticked, and the date and time
+      are recorded instead.
+    </p>
+
+    <div class="fgrid" style="margin-top:22px">
+      <div class="fld wide">
+        <label for="d-name">Your full name, as parent or guardian</label>
+        <input type="text" id="d-name">
+      </div>
+    </div>
+
+    <div class="consent" style="margin-top:18px">
+      <input type="checkbox" id="d-confirm">
+      <div class="body">
+        <b>I confirm this is accurate</b>
+        <span>I am the parent or legal guardian of the child named in section 1. The
+        information I have given is accurate and complete to the best of my knowledge, and I
+        will tell the organisers if anything changes during the programme.</span>
+      </div>
+    </div>
+
+    <div class="submit-actions">
+      <button class="btn" type="button" id="submit">
+        Submit my form
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </button>
+      <button class="btn btn-ghost" type="button" id="copy">Copy my answers</button>
+      <button class="btn btn-ghost" type="button" class="btn btn-ghost print-trigger">Print and sign instead</button>
+    </div>
+    <p id="submit-status" role="status" aria-live="polite"></p>
+    <p class="or-print">
+      Submitting opens your email app with everything filled in, addressed to the camp
+      organiser &mdash; you just press send. If nothing opens, use <b>Copy my answers</b> and
+      paste them into an email to shay.deegan@gmail.com.
+    </p>
+  </div>
+
+  <!-- ===================== signature (printed copy) ===================== -->
   <div class="sign">
     <h3>Declaration</h3>
     <p>
@@ -468,9 +560,9 @@
 
     <h3>How long we keep it</h3>
     <p>
-      Forms are destroyed <span class="todo">FILL IN: e.g. three months</span> after the final
-      session, except where an injury or incident was recorded, in which case that record is
-      retained as long as our insurers and the GAA require.
+      Forms are destroyed three months after the final session, except where an injury or
+      incident was recorded, in which case that record is retained as long as our insurers
+      and the GAA require.
     </p>
 
     <h3>Your rights</h3>
@@ -494,7 +586,202 @@
 </div>
 
 <script>
-document.getElementById('print').addEventListener('click', function(){ window.print(); });
+/* =======================================================================
+   SETTINGS
+
+   Paste a Google Form link between the quotes to switch this page over to
+   it. Leave it empty and the page submits by opening a pre-filled email
+   instead. Either way the printed version is unaffected.
+   ======================================================================= */
+var CONFIG = {
+  consentFormUrl: "",                    // e.g. "https://forms.gle/abc123"
+  email:          "shay.deegan@gmail.com"
+};
+/* ===================================================================== */
+
+(function(){
+  // print buttons
+  [].forEach.call(document.querySelectorAll('#print, .print-trigger'), function(b){
+    b.addEventListener('click', function(){ window.print(); });
+  });
+
+  var online = document.getElementById('online-wrap');
+  var cta    = document.getElementById('gform-cta');
+
+  // If a Google Form is configured, point people at it and hide the email path.
+  var url = (CONFIG.consentFormUrl || "").trim();
+  if (url){
+    document.getElementById('gform-link').href = url;
+    cta.hidden = false;
+    online.hidden = true;
+    return;
+  }
+
+  var status = document.getElementById('submit-status');
+
+  function v(id){
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  function ticked(id){
+    var el = document.getElementById(id);
+    return !!(el && el.checked);
+  }
+  function mark(id, bad){
+    var el = document.getElementById(id);
+    if (!el) return;
+    var target = el.type === 'checkbox' ? el.closest('.consent') : el;
+    if (target) target.classList[bad ? 'add' : 'remove']('err');
+  }
+
+  // id -> label, in the order they appear on the form
+  var TEXT_FIELDS = [
+    ['c-first',  "Child first name",        true],
+    ['c-last',   "Child surname",           true],
+    ['c-dob',    "Date of birth",           true],
+    ['c-age',    "Age on 5 Oct 2026",       true],
+    ['c-addr',   "Home address",            true],
+    ['c-school', "School",                  false],
+    ['c-club',   "Club",                    false],
+    ['g-name',   "Parent/guardian",         true],
+    ['g-rel',    "Relationship to child",   true],
+    ['g-mob',    "Guardian mobile",         true],
+    ['g-email',  "Guardian email",          true],
+    ['e-name',   "Emergency contact",       true],
+    ['e-rel',    "Emergency relationship",  true],
+    ['e-phone',  "Emergency phone",         true],
+    ['m-cond',   "Medical conditions",      true],
+    ['m-allerg', "Allergies",               true],
+    ['m-meds',   "Medication",              true],
+    ['m-gp',     "GP name",                 false],
+    ['m-gp-tel', "GP phone",                false],
+    ['col-who',  "Permitted to collect",    true]
+  ];
+
+  var REQUIRED_CONSENTS = [
+    ['k1', "Taking part and the risks involved"],
+    ['k2', "Helmet and protective equipment"],
+    ['k3', "Emergency medical treatment"],
+    ['k4', "Code of behaviour"],
+    ['k5', "How we handle your information"]
+  ];
+
+  function validate(){
+    var missing = [];
+    TEXT_FIELDS.forEach(function(f){
+      var bad = f[2] && !v(f[0]);
+      mark(f[0], bad);
+      if (bad) missing.push(f[1]);
+    });
+    var em = document.getElementById('g-email');
+    if (em.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())){
+      mark('g-email', true);
+      missing.push("A valid email address");
+    }
+    REQUIRED_CONSENTS.forEach(function(c){
+      var bad = !ticked(c[0]);
+      mark(c[0], bad);
+      if (bad) missing.push("Consent: " + c[1]);
+    });
+    var dn = !v('d-name');
+    mark('d-name', dn);
+    if (dn) missing.push("Your name in the declaration");
+    var dc = !ticked('d-confirm');
+    mark('d-confirm', dc);
+    if (dc) missing.push("The confirmation tick");
+    return missing;
+  }
+
+  function body(){
+    var L = [];
+    L.push("SAINTFIELD HURLING CAMP — parental consent & medical form");
+    L.push("Submitted " + new Date().toLocaleString('en-GB'));
+    L.push("");
+    L.push("--- CHILD ---");
+    L.push("Name: " + v('c-first') + " " + v('c-last'));
+    L.push("Date of birth: " + v('c-dob') + "   Age on 5 Oct: " + v('c-age'));
+    L.push("Address: " + v('c-addr'));
+    L.push("School: " + (v('c-school') || '—') + "   Club: " + (v('c-club') || '—'));
+    L.push("");
+    L.push("--- PARENT / GUARDIAN ---");
+    L.push(v('g-name') + " (" + v('g-rel') + ")");
+    L.push("Mobile: " + v('g-mob'));
+    L.push("Email: " + v('g-email'));
+    L.push("");
+    L.push("--- EMERGENCY CONTACT ---");
+    L.push(v('e-name') + " (" + v('e-rel') + ")  " + v('e-phone'));
+    L.push("");
+    L.push("--- MEDICAL ---");
+    L.push("Conditions: " + v('m-cond'));
+    L.push("Allergies: " + v('m-allerg'));
+    L.push("Medication: " + v('m-meds'));
+    L.push("GP: " + (v('m-gp') || '—') + "  " + (v('m-gp-tel') || ''));
+    L.push("");
+    L.push("--- GETTING HOME ---");
+    L.push("May be collected by: " + v('col-who'));
+    L.push("May make own way home: " + (ticked('col-alone') ? "YES" : "No — must be collected"));
+    L.push("");
+    L.push("--- CONSENTS GIVEN ---");
+    REQUIRED_CONSENTS.forEach(function(c){
+      L.push((ticked(c[0]) ? "[x] " : "[ ] ") + c[1]);
+    });
+    L.push((ticked('k6') ? "[x] " : "[ ] ") + "Photographs and video (optional)");
+    L.push("");
+    L.push("--- DECLARATION ---");
+    L.push("Confirmed by: " + v('d-name'));
+    L.push("Ticked: " + (ticked('d-confirm') ? "yes" : "no"));
+    L.push("");
+    L.push("Submitted from " + window.location.href);
+    return L.join("\n");
+  }
+
+  document.getElementById('submit').addEventListener('click', function(){
+    var missing = validate();
+    if (missing.length){
+      status.className = '';
+      status.textContent = "Still needed — " + missing.join("; ") + ".";
+      var first = document.querySelector('.err');
+      if (first) first.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    var text = body();
+    var href = 'mailto:' + CONFIG.email
+      + '?subject=' + encodeURIComponent('Consent form — ' + v('c-first') + ' ' + v('c-last'))
+      + '&body=' + encodeURIComponent(text);
+
+    // Long medical notes can push a mailto past what some mail apps accept,
+    // so copy to the clipboard as well and say so.
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).catch(function(){});
+    }
+    status.className = 'ok';
+    status.textContent = "Opening your email app with everything filled in — just press send. "
+      + "A copy is on your clipboard too, in case anything is missing.";
+    window.location.href = href;
+  });
+
+  document.getElementById('copy').addEventListener('click', function(){
+    var text = body();
+    function done(){
+      status.className = 'ok';
+      status.textContent = "Copied. Paste it into an email to " + CONFIG.email + ".";
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch (e){
+        status.className = '';
+        status.textContent = "Could not copy — please email " + CONFIG.email + ".";
+      }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+})();
 </script>
 </body>
 </html>
