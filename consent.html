@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Parental consent &amp; medical form &mdash; Saintfield Hurling Camp</title>
+<meta name="description" content="Parental consent, medical information and risk acknowledgement form for the Saintfield Hurling Camp, ages 9-12.">
+<meta name="theme-color" content="#B3121B">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23B3121B'/><path d='M50 4c-13 12-13 80 0 92M50 4c13 12 13 80 0 92' stroke='%23fff' stroke-width='6' fill='none'/></svg>">
+<link rel="stylesheet" href="style.css?v=2">
+<style>
+  /* ---------- consent form, screen ---------- */
+  .doc{max-width:860px;margin:0 auto;padding:0 24px}
+  .doc-head{padding-block:56px 34px}
+  .doc-head h1{font-size:clamp(2.1rem,6vw,3.4rem);margin-bottom:18px}
+  .doc-head p{color:var(--ink-2);font-size:1.06rem;max-width:62ch}
+  .backlink{
+    display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;
+    color:var(--muted);margin-bottom:24px;
+  }
+  .backlink:hover{color:var(--red);text-decoration:none}
+
+  .callout{
+    border-left:4px solid var(--gold);background:var(--bg-3);
+    padding:20px 24px;border-radius:0 14px 14px 0;margin:0 0 34px;
+  }
+  .callout strong{display:block;margin-bottom:6px}
+  .callout p{margin:0;font-size:.96rem;color:var(--ink-2)}
+
+  .todo{
+    background:#FFF3CD;border:1.5px dashed #B3121B;color:#7D0A11;
+    padding:2px 8px;border-radius:5px;font-weight:700;font-size:.92em;
+    white-space:nowrap;
+  }
+
+  /* camp facts */
+  .facts-box{
+    border:1.5px solid var(--line);border-radius:16px;background:var(--bg-2);
+    padding:24px 26px;margin:0 0 40px;
+  }
+  .facts-box dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin:0}
+  .facts-box dt{
+    font-size:.7rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);padding-top:3px;
+  }
+  .facts-box dd{margin:0;font-weight:600}
+  @media (max-width:560px){
+    .facts-box dl{grid-template-columns:1fr;gap:2px}
+    .facts-box dd{margin-bottom:12px}
+  }
+
+  /* sections */
+  .sec{margin:0 0 40px;padding:0 0 4px}
+  .sec > h2{
+    font-size:1.02rem;letter-spacing:.11em;text-transform:uppercase;
+    font-family:var(--body);font-weight:800;color:var(--red);
+    padding-bottom:10px;margin-bottom:22px;border-bottom:2px solid var(--line);
+  }
+  .sec > h2 .n{
+    display:inline-grid;place-items:center;width:26px;height:26px;border-radius:7px;
+    background:var(--red);color:var(--on-red);font-size:.82rem;margin-right:11px;
+    vertical-align:-5px;letter-spacing:0;
+  }
+
+  /* fill-in fields */
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px}
+  .fgrid .wide{grid-column:1/-1}
+  @media (max-width:620px){ .fgrid{grid-template-columns:1fr} }
+  .fld label{
+    display:block;font-size:.72rem;font-weight:800;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:5px;
+  }
+  .fld input, .fld textarea{
+    width:100%;font-family:var(--body);font-size:1rem;color:var(--ink);
+    background:transparent;border:0;border-bottom:1.5px solid var(--line);
+    padding:7px 2px;border-radius:0;
+  }
+  .fld input:focus, .fld textarea:focus{
+    outline:0;border-bottom-color:var(--red);
+  }
+  .fld textarea{min-height:74px;resize:vertical;border:1.5px solid var(--line);border-radius:10px;padding:10px}
+  .fld .help{font-size:.82rem;color:var(--muted);margin:5px 0 0}
+
+  /* consent ticks */
+  .consent{
+    display:flex;gap:15px;align-items:flex-start;
+    padding:17px 19px;border:1.5px solid var(--line);border-radius:13px;
+    margin-bottom:12px;background:var(--bg-2);
+  }
+  .consent input{
+    width:22px;height:22px;flex:0 0 22px;margin:2px 0 0;accent-color:var(--red);
+  }
+  .consent .body{flex:1}
+  .consent .body b{display:block;margin-bottom:4px;font-size:1rem}
+  .consent .body span{font-size:.93rem;color:var(--ink-2)}
+  .consent.optional{border-style:dashed}
+  .consent .opt-tag{
+    display:inline-block;font-size:.64rem;font-weight:800;letter-spacing:.11em;
+    text-transform:uppercase;padding:3px 8px;border-radius:5px;margin-left:8px;
+    background:var(--bg-3);color:var(--muted);vertical-align:2px;
+  }
+
+  /* our commitments */
+  .commit{list-style:none;padding:0;margin:0}
+  .commit li{
+    position:relative;padding:0 0 13px 30px;font-size:.98rem;color:var(--ink-2);
+  }
+  .commit li::before{
+    content:'';position:absolute;left:4px;top:8px;width:9px;height:9px;
+    border-radius:50%;background:var(--grass);
+  }
+
+  /* signature */
+  .sign{
+    border:2px solid var(--ink);border-radius:16px;padding:26px 28px;margin:0 0 40px;
+    background:var(--bg-2);
+  }
+  .sign h3{font-size:1.1rem;margin-bottom:8px}
+  .sign p{font-size:.94rem;color:var(--ink-2)}
+  .sign-row{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:22px}
+  @media (max-width:620px){ .sign-row{grid-template-columns:1fr} }
+  .sign-line{border-bottom:1.5px solid var(--ink);height:44px}
+  .sign-cap{
+    font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);margin-top:7px;
+  }
+
+  /* privacy */
+  .privacy{font-size:.92rem;color:var(--ink-2)}
+  .privacy h3{font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;font-family:var(--body);margin:22px 0 8px}
+  .privacy ul{padding-left:20px;margin:0 0 14px}
+  .privacy li{margin-bottom:6px}
+
+  .doc-foot{
+    border-top:1px solid var(--line);margin-top:48px;padding:28px 0 64px;
+    font-size:.88rem;color:var(--muted);
+  }
+  .print-btn{margin:0 0 40px}
+
+  /* ---------- print: a clean, signable A4 form ---------- */
+  @media print{
+    @page{size:A4;margin:14mm 13mm}
+    :root{
+      --red:#000; --red-deep:#000; --ink:#000; --ink-2:#000; --muted:#333;
+      --bg:#fff; --bg-2:#fff; --bg-3:#fff; --line:#999; --grass:#000; --gold:#000;
+    }
+    body{background:#fff;font-size:9.6pt;line-height:1.35}
+    nav, .print-btn, .backlink, .doc-foot{display:none !important}
+    .doc{max-width:none;padding:0}
+    .doc-head{padding-block:0 12px}
+    .doc-head h1{font-size:19pt;margin-bottom:8px}
+    .doc-head p{font-size:9pt;max-width:none}
+    .callout{border-left-width:2px;padding:8px 10px;margin-bottom:12px;page-break-inside:avoid}
+    .callout p{font-size:8.6pt}
+    .facts-box{padding:10px 12px;margin-bottom:16px;page-break-inside:avoid}
+    .facts-box dl{gap:4px 16px}
+    .sec{margin-bottom:18px;page-break-inside:avoid}
+    .sec > h2{font-size:9.4pt;margin-bottom:12px;padding-bottom:5px;border-bottom-width:1px}
+    .sec > h2 .n{background:#000;color:#fff;width:17px;height:17px;font-size:7.4pt;vertical-align:-3px;margin-right:7px}
+    .fgrid{gap:13px 20px}
+    .fld label{font-size:6.8pt;margin-bottom:2px}
+    .fld input{border-bottom-color:#000;padding:2px;font-size:9.6pt}
+    .fld textarea{min-height:38px;border-color:#000}
+    .fld .help{font-size:7.4pt}
+    .consent{padding:7px 9px;margin-bottom:6px;page-break-inside:avoid;border-color:#000}
+    .consent input{width:13px;height:13px;flex:0 0 13px}
+    .consent .body b{font-size:9pt;margin-bottom:1px}
+    .consent .body span{font-size:8.4pt}
+    .commit li{font-size:8.6pt;padding-bottom:5px}
+    .sign{padding:12px 14px;page-break-inside:avoid;border-width:1.5px}
+    .sign-line{height:30px;border-bottom-color:#000}
+    .privacy{font-size:8pt}
+    .privacy h3{font-size:8.4pt;margin:10px 0 4px}
+    /* keep the signature and privacy notice together on the last sheet */
+    .page-break{break-before:page}
+    a{color:#000;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc doc-head">
+  <a class="backlink" href="index.html">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H6M12 19l-7-7 7-7"/></svg>
+    Camp page
+  </a>
+  <p class="eyebrow">One form per child</p>
+  <h1>Parental consent<br>&amp; medical form</h1>
+  <p>
+    Every child taking part needs this completed and signed by a parent or guardian
+    before their first session. It tells us how to reach you, what we need to know
+    about your child's health, and who is allowed to collect them.
+  </p>
+</div>
+
+<div class="doc">
+
+  <div class="print-btn">
+    <button class="btn" type="button" id="print">
+      Print this form
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+    </button>
+  </div>
+
+  <div class="callout">
+    <strong>About this form</strong>
+    <p>
+      This is a consent and medical information form, not a disclaimer of liability.
+      Under UK and Northern Ireland law a parent cannot sign away a child's right to
+      claim for injury caused by negligence, and nothing here attempts to do that.
+      What you are agreeing to is that your child may take part, that you understand
+      hurling carries a risk of injury even when run properly, and that we may act in
+      your child's interests in an emergency.
+    </p>
+  </div>
+
+  <div class="facts-box">
+    <dl>
+      <dt>Programme</dt><dd>Saintfield Hurling Camp &mdash; hurling and camogie, ages 9&ndash;12</dd>
+      <dt>Dates</dt><dd>Nine Mondays: 5, 12, 19, 26 October and 2, 9, 16, 23, 30 November 2026</dd>
+      <dt>Time</dt><dd>6.00pm &ndash; 7.00pm (please arrive from 5.45pm)</dd>
+      <dt>Venue</dt><dd>Saintfield 3G Arena, Saintfield Community Centre, 29 Belfast Road, Saintfield, Co. Down BT24 7EP</dd>
+      <dt>Run by</dt><dd>The Social Slashers (registered NI charity NIC109510) with Saul GAC and Carryduff Hurling</dd>
+      <dt>Supported by</dt><dd>Down GAA and Ulster GAA. Funded by a grant from the Noah Donohoe Foundation</dd>
+      <dt>Cost</dt><dd>Free of charge</dd>
+    </dl>
+  </div>
+
+  <!-- ===================== 1. child ===================== -->
+  <section class="sec">
+    <h2><span class="n">1</span>The child</h2>
+    <div class="fgrid">
+      <div class="fld"><label for="c-first">First name</label><input type="text" id="c-first"></div>
+      <div class="fld"><label for="c-last">Surname</label><input type="text" id="c-last"></div>
+      <div class="fld"><label for="c-dob">Date of birth</label><input type="text" id="c-dob" placeholder="DD / MM / YYYY"></div>
+      <div class="fld"><label for="c-age">Age on 5 October 2026</label><input type="text" id="c-age"></div>
+      <div class="fld wide"><label for="c-addr">Home address</label><input type="text" id="c-addr"></div>
+      <div class="fld"><label for="c-school">School</label><input type="text" id="c-school"></div>
+      <div class="fld"><label for="c-club">Club, if any</label><input type="text" id="c-club" placeholder="or write none"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. guardian ===================== -->
+  <section class="sec">
+    <h2><span class="n">2</span>Parent or guardian</h2>
+    <div class="fgrid">
+      <div class="fld"><label for="g-name">Full name</label><input type="text" id="g-name"></div>
+      <div class="fld"><label for="g-rel">Relationship to child</label><input type="text" id="g-rel"></div>
+      <div class="fld"><label for="g-mob">Mobile &mdash; contactable during sessions</label><input type="text" id="g-mob"></div>
+      <div class="fld"><label for="g-email">Email</label><input type="text" id="g-email"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. emergency ===================== -->
+  <section class="sec">
+    <h2><span class="n">3</span>Emergency contact</h2>
+    <div class="fgrid">
+      <div class="fld"><label for="e-name">Full name</label><input type="text" id="e-name"></div>
+      <div class="fld"><label for="e-rel">Relationship to child</label><input type="text" id="e-rel"></div>
+      <div class="fld wide">
+        <label for="e-phone">Phone</label><input type="text" id="e-phone">
+        <p class="help">Please give someone other than yourself, who we can reach if you cannot be contacted.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. medical ===================== -->
+  <section class="sec">
+    <h2><span class="n">4</span>Medical information</h2>
+    <div class="fgrid">
+      <div class="fld wide">
+        <label for="m-cond">Medical conditions we should know about</label>
+        <textarea id="m-cond" placeholder="Asthma, epilepsy, diabetes, heart condition, additional needs, recent injury or operation, anything else. Write none if there is nothing."></textarea>
+      </div>
+      <div class="fld wide">
+        <label for="m-allerg">Allergies</label>
+        <textarea id="m-allerg" placeholder="Including food, insect stings and medicines. Tell us what a reaction looks like and what we should do."></textarea>
+      </div>
+      <div class="fld wide">
+        <label for="m-meds">Medication your child carries or may need</label>
+        <textarea id="m-meds" placeholder="For example an inhaler or an adrenaline auto-injector. Please tell us where it will be kept during the session."></textarea>
+      </div>
+      <div class="fld"><label for="m-gp">GP name</label><input type="text" id="m-gp"></div>
+      <div class="fld"><label for="m-gp-tel">GP surgery phone</label><input type="text" id="m-gp-tel"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 5. collection ===================== -->
+  <section class="sec">
+    <h2><span class="n">5</span>Getting home</h2>
+    <div class="fgrid">
+      <div class="fld wide">
+        <label for="col-who">Adults permitted to collect this child</label>
+        <input type="text" id="col-who" placeholder="Names, and relationship to the child">
+        <p class="help">We will not release a child to anyone not named here without speaking to you first.</p>
+      </div>
+    </div>
+    <div class="consent optional" style="margin-top:18px">
+      <input type="checkbox" id="col-alone">
+      <div class="body">
+        <b>My child has my permission to make their own way home<span class="opt-tag">Only if it applies</span></b>
+        <span>Leave this unticked if your child must be collected by an adult. Children are
+        released at 7.00pm from the arena entrance.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6. consents ===================== -->
+  <section class="sec">
+    <h2><span class="n">6</span>Your consent</h2>
+
+    <div class="consent">
+      <input type="checkbox" id="k1">
+      <div class="body">
+        <b>Taking part, and the risks involved</b>
+        <span>I give permission for my child to take part in the Saintfield Hurling Camp.
+        I understand that hurling and camogie are physical sports played with a stick and a
+        hard ball, and that there is a risk of injury &mdash; including knocks, sprains,
+        breaks and dental or facial injury &mdash; even where sessions are properly run and
+        supervised. I accept that risk on my child's behalf.</span>
+      </div>
+    </div>
+
+    <div class="consent">
+      <input type="checkbox" id="k2">
+      <div class="body">
+        <b>Helmet and protective equipment</b>
+        <span>I understand that a helmet with a faceguard must be worn at all times during
+        hurling and camogie activity, that this is a GAA requirement at every age, and that
+        my child will not be permitted to take part without one. Helmets are provided if
+        your child does not have their own. A mouthguard is strongly recommended.</span>
+      </div>
+    </div>
+
+    <div class="consent">
+      <input type="checkbox" id="k3">
+      <div class="body">
+        <b>Emergency medical treatment</b>
+        <span>If you cannot be contacted, I consent to those in charge giving first aid and,
+        where they judge it necessary, calling an ambulance or seeking urgent medical or
+        dental treatment for my child. I understand I will be contacted as soon as possible.</span>
+      </div>
+    </div>
+
+    <div class="consent">
+      <input type="checkbox" id="k4">
+      <div class="body">
+        <b>Code of behaviour</b>
+        <span>I have explained to my child that they are expected to listen to the coaches,
+        treat other children and their equipment with respect, and follow the GAA Code of
+        Behaviour (Underage). I understand a child may be asked to sit out, or to leave the
+        programme, if their behaviour puts themselves or others at risk.</span>
+      </div>
+    </div>
+
+    <div class="consent">
+      <input type="checkbox" id="k5">
+      <div class="body">
+        <b>How we handle your information</b>
+        <span>I have read the privacy notice at the end of this form and understand how the
+        details given here will be used, stored and deleted.</span>
+      </div>
+    </div>
+
+    <div class="consent optional">
+      <input type="checkbox" id="k6">
+      <div class="body">
+        <b>Photographs and video<span class="opt-tag">Optional</span></b>
+        <span>I agree that photographs or video of my child taken at the camp may be used by
+        the organising clubs to promote the programme &mdash; on club social media, the camp
+        website, and in reporting to the Noah Donohoe Foundation. Names will not be published
+        alongside images. You can say no here and your child takes part exactly the same way,
+        and you can change your mind at any time by telling us.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 7. our side ===================== -->
+  <section class="sec">
+    <h2><span class="n">7</span>What we commit to</h2>
+    <ul class="commit">
+      <li>Sessions are led by coaches who hold a current GAA coaching qualification and
+          valid AccessNI vetting.</li>
+      <li>A qualified first aider and a stocked first aid kit are present at every session.</li>
+      <li>Helmets and hurls are provided, checked, and no child takes part without a helmet.</li>
+      <li>Children are supervised from the start of the session until they are collected
+          at 7.00pm.</li>
+      <li>We follow the GAA Code of Behaviour (Underage) and the safeguarding policies of
+          the organising clubs.</li>
+      <li>Your information is kept only as long as we need it and is not shared beyond the
+          organising clubs.</li>
+      <li>Any concern about a child's welfare will be handled through our designated
+          Children's Officer, named below.</li>
+    </ul>
+
+    <div class="callout" style="margin-top:26px">
+      <strong>Designated Children's Officer for this programme</strong>
+      <p>
+        <span class="todo">FILL IN: name</span>
+        &nbsp;<span class="todo">FILL IN: phone</span>
+        &nbsp;<span class="todo">FILL IN: email</span><br><br>
+        If you have any concern about your child's welfare or about the conduct of anyone
+        involved in the camp, you can raise it with the Children's Officer directly, or with
+        the Ulster GAA Safeguarding team.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== signature ===================== -->
+  <div class="sign">
+    <h3>Declaration</h3>
+    <p>
+      I confirm that I am the parent or legal guardian of the child named in section 1, that
+      the information I have given is accurate and complete to the best of my knowledge, and
+      that I have ticked the consents in section 6 that I agree to. I will tell the organisers
+      if any of these details change during the programme.
+    </p>
+    <div class="sign-row">
+      <div>
+        <div class="sign-line"></div>
+        <div class="sign-cap">Signature of parent or guardian</div>
+      </div>
+      <div>
+        <div class="sign-line"></div>
+        <div class="sign-cap">Date</div>
+      </div>
+    </div>
+    <div class="sign-row">
+      <div>
+        <div class="sign-line"></div>
+        <div class="sign-cap">Print name</div>
+      </div>
+      <div>
+        <div class="sign-line"></div>
+        <div class="sign-cap">Office use &mdash; received by</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== privacy ===================== -->
+  <section class="sec privacy">
+    <h2><span class="n">8</span>Privacy notice</h2>
+
+    <h3>Who holds this information</h3>
+    <p>
+      The Social Slashers (registered NI charity NIC109510), as the organisers of the camp,
+      together with Saul GAC and Carryduff Hurling as partner clubs.
+    </p>
+
+    <h3>Why we collect it</h3>
+    <ul>
+      <li>To run the sessions safely and know who is present each week.</li>
+      <li>To contact you about the programme, and to reach you or your emergency contact
+          if something happens during a session.</li>
+      <li>To respond appropriately to a medical need or an injury.</li>
+      <li>To report anonymised participation numbers to the Noah Donohoe Foundation, Down GAA
+          and Ulster GAA as a condition of the funding. No child is named in that reporting.</li>
+    </ul>
+
+    <h3>Who can see it</h3>
+    <p>
+      Only the coaches and organisers who need it to run the camp safely. Medical details are
+      shared with the coach leading your child's group and the first aider on duty. We will
+      share information with emergency services if your child needs urgent treatment. We do
+      not sell it, and we do not pass it to anyone else without your permission, unless we are
+      required to by law or we have a safeguarding duty to do so.
+    </p>
+
+    <h3>How long we keep it</h3>
+    <p>
+      Forms are destroyed <span class="todo">FILL IN: e.g. three months</span> after the final
+      session, except where an injury or incident was recorded, in which case that record is
+      retained as long as our insurers and the GAA require.
+    </p>
+
+    <h3>Your rights</h3>
+    <p>
+      You can ask to see what we hold about your child, have it corrected, or have it deleted,
+      and you can withdraw any consent at any time. Contact
+      <a href="mailto:shay.deegan@gmail.com">shay.deegan@gmail.com</a>. If you are unhappy
+      with how we have handled your information you can complain to the Information
+      Commissioner's Office at ico.org.uk.
+    </p>
+  </section>
+
+  <div class="doc-foot">
+    Saintfield Hurling Camp &mdash; run by The Social Slashers with Saul GAC and Carryduff
+    Hurling, supported by Down GAA and Ulster GAA, funded by a grant from the Noah Donohoe
+    Foundation.<br><br>
+    Questions about this form: Shay Deegan,
+    <a href="mailto:shay.deegan@gmail.com">shay.deegan@gmail.com</a>
+  </div>
+
+</div>
+
+<script>
+document.getElementById('print').addEventListener('click', function(){ window.print(); });
+</script>
+</body>
+</html>
